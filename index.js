@@ -1,12 +1,9 @@
-const c = require('./hello');
+const http = require('http');
 
-const a = 100;
-const b = 'world';
+const site = http.createServer(function(res,req) {
+    console.log('hello World');
+    res.setHeader('Content-Type', 'text/html');
+    res.end('<h1>Hello World</h1>');
+});
 
-const d = require('./hello2');
-
-console.log(a + b);
-console.log(c);
-console.log(d);
-
-console.log(d.first+ ' ' + d.second);
+site.listen(3000);
