@@ -22,6 +22,8 @@ app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
 app.use(function(req,res,next) {
     console.log("I'm in the middle");
+    console.log(req.body);
+    next();
 })
 
 app.get('/', function(req, res) {
@@ -30,7 +32,7 @@ app.get('/', function(req, res) {
 });
 
 app.post('/', function(req, res) {
-    console.log(req.body);
+    
     res.send('<h1>POST Sent</h1>');
 
 });
