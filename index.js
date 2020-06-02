@@ -14,15 +14,25 @@
 
 // site.listen(3000);
 
-var express = require('express');
-var app = express();
+const express = require('express');
+const app = express();
+const bodyParser = require('body-parser');
+
+app.use(bodyParser.urlencoded({extended:false}));
+app.use(bodyParser.json());
+app.use(function(req,res,next) {
+    console.log("I'm in the middle");
+})
 
 app.get('/', function(req, res) {
+    
     res.send('<h1>Sup Homeslice</h1>');
 });
 
 app.post('/', function(req, res) {
+    console.log(req.body);
     res.send('<h1>POST Sent</h1>');
+
 });
 
 app.put('/', function(req, res) {
