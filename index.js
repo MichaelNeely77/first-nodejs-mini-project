@@ -18,7 +18,22 @@ var express = require('express');
 var app = express();
 
 app.get('/', function(req, res) {
-    res.send('<h1>Sup Homeslice!</h1>');
+    res.send('<h1>Sup Homeslice</h1>');
 });
+
+app.post('/', function(req, res) {
+    res.send('<h1>POST Sent</h1>');
+});
+
+app.put('/', function(req, res) {
+    res.send('<h1>PUT Sent</h1>');
+});
+
+
+app.delete('/', function(req, res) {
+    res.send('<h1>DELETE Sent</h1>');
+});
+
+
 
 app.listen(3000);
