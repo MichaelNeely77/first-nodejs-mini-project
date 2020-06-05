@@ -17,23 +17,31 @@
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
+const data = {user: "admin", pass: "password"};
 
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
-app.use(function(req,res,next) {
-    console.log("I'm in the middle");
-    console.log(req.body);
-    next();
-})
+
+
+// app.use(function(req,res,next) {
+//     console.log("I'm in the middle");
+//     console.log(req.body);
+//     next();
+// })
 
 app.get('/', function(req, res) {
     
     res.send('<h1>Sup Homeslice</h1>');
 });
 
-app.post('/', function(req, res) {
-    
-    res.send('<h1>POST Sent</h1>');
+app.post('/login', function(req, res) {
+    if(data.user == req.body.user){
+        res.write('{"status":"success"}');
+    } else {
+        res.write('{"status":"fail"}');
+    }
+    console.log(req.body.user)
+    res.send();
 
 });
 
