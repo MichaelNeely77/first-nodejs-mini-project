@@ -42,25 +42,27 @@ app.use(express.static(__dirname + '/public'));
 
 app.get('/users', function(req, res) {
     // see all users
-    res.send('<h1>Sup Homeslice</h1>');
+    res.send('<h1>GET sent</h1>');
 });
 
 app.post('/users', function(req, res) {
     // create and add user
-    console.log(req.body.user)
-    res.send();
+    console.log(req.body);
+    req.body.id = data.users.length+1;
+    res.send('POST sent');
 
 });
 
 app.get('/users/:id', function(req, res) {
+    console.log(req.params);
     // get users info by id
-    res.send();
+    res.send('user by ID');
 });
 
 app.put('/users/:id', function(req, res) {
     // update users
     console.log(req.params);
-    res.send('<h1>PUT Sent</h1>');
+    res.send('<h1>PUT Sent</h1>'+req.params.id);
 });
 
 
