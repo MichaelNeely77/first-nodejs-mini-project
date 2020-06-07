@@ -17,16 +17,19 @@
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
-const data = {"users": [{
-    "user": "admin1", 
-    "pass": "password1",
-    "id": 1
-},{
-    "user": "admin2", 
-    "pass": "password2",
-    "id": 2
-
-}]};
+const data = {"users": [
+        {
+        "user": "admin1", 
+        "pass": "password1",
+        "id": 1
+        },
+        {
+        "user": "admin2", 
+        "pass": "password2",
+        "id": 2
+        }
+    ]
+};
 
 console.log(__dirname);
 app.use(bodyParser.urlencoded({extended:false}));
@@ -47,8 +50,10 @@ app.get('/users', function(req, res) {
 
 app.post('/users', function(req, res) {
     // create and add user
-    console.log(req.body);
     req.body.id = data.users.length+1;
+    data.users.push(req.body);
+    console.log(req.body);
+    console.log(data);
     res.send('POST sent');
 
 });
