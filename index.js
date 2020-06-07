@@ -45,15 +45,13 @@ app.use(express.static(__dirname + '/public'));
 
 app.get('/users', function(req, res) {
     // see all users
-    res.send('<h1>GET sent</h1>');
+    res.json(data);
 });
 
 app.post('/users', function(req, res) {
     // create and add user
     req.body.id = data.users.length+1;
     data.users.push(req.body);
-    console.log(req.body);
-    console.log(data);
     res.send('POST sent');
 
 });
@@ -61,13 +59,13 @@ app.post('/users', function(req, res) {
 app.get('/users/:id', function(req, res) {
     console.log(req.params);
     // get users info by id
-    res.send('user by ID');
+    res.send(getRow(req.params.id));
 });
 
 app.put('/users/:id', function(req, res) {
     // update users
-    console.log(req.params);
-    res.send('<h1>PUT Sent</h1>'+req.params.id);
+    
+    res.send('<h1>PUT Sent</h1>' + req.params.id);
 });
 
 
@@ -79,3 +77,12 @@ app.delete('/users/:id', function(req, res) {
 
 
 app.listen(3000);
+
+function getRow(id) {
+    for(let item of data.users) {
+        if(item.id == id) {
+            return item;
+        }
+        return false;
+    }
+}
