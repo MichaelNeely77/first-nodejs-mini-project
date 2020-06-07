@@ -50,7 +50,7 @@ app.get('/users', function(req, res) {
 
 app.post('/users', function(req, res) {
     // create and add user
-    req.body.id = data.users.length+1;
+    req.body.id = data.users.length + 1;
     data.users.push(req.body);
     res.send('POST sent');
 
@@ -64,6 +64,20 @@ app.get('/users/:id', function(req, res) {
 
 app.put('/users/:id', function(req, res) {
     // update users
+    console.log(req.body);
+
+    req.body.id = req.params.id;
+    let temp = data.users.indexOf(getRow(req.params.id));
+if(temp != -1) {
+    data.users[temp] = req.body;
+    res.write('Updated ' + temp)
+} else {
+    res.write('Not found');
+}
+    
+console.log(data);
+
+    res.send();
     
     res.send('<h1>PUT Sent</h1>' + req.params.id);
 });
@@ -71,10 +85,18 @@ app.put('/users/:id', function(req, res) {
 
 app.delete('/users/:id', function(req, res) {
     // delete user
-    res.send('<h1>DELETE Sent</h1>');
+let temp = data.users.indexOf(getRow(req.params.id));
+if(temp != -1) {
+    data.users.splice(temp, 1);
+    res.write('Deleted ' + temp)
+} else {
+    res.write('Not found');
+}
+    
+console.log(data);
+
+    res.send();
 });
-
-
 
 app.listen(3000);
 
