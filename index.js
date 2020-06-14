@@ -50,7 +50,7 @@ app.get('/users', function(req, res) {
 
 app.post('/users', function(req, res) {
     // create and add user
-    req.body.id = data.users.length + 1;
+    req.body.id = Math.floor(Date.now());
     data.users.push(req.body);
     res.send('POST sent');
 
