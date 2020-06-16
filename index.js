@@ -44,8 +44,6 @@ app.get('/users/:id', function(req, res) {
 
 app.put('/users/:id', function(req, res) {
     // update users
-    
-    req.body.id = req.params.id;
     let id = db.findID(data.users, req.params.id);
 
     if (id != -1) {
