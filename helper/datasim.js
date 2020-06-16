@@ -14,11 +14,11 @@ const data = {"users": [
 
 function getRow(id) {
     for(let item of data.users) {
-        if(item.id == id) {
-            return item;
+        if(item.id == id) 
+            return item; 
         }
         return false;
-    }
+    
 }
 
 const findID = function(users, id) {

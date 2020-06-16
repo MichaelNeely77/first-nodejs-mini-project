@@ -62,10 +62,10 @@ app.put('/users/:id', function(req, res) {
 
 app.delete('/users/:id', function(req, res) {
     // delete user
-let temp = data.users.indexOf(getRow(req.params.id));
-if(temp != -1) {
-    data.users.splice(temp, 1);
-    res.write('Deleted ' + temp)
+let id = data.users.indexOf(db.getRow(req.params.id));
+if(id != -1) {
+    data.users.splice(id, 1);
+    res.write('Deleted ' + id)
 } else {
     res.write('Not found');
 }
